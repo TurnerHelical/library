@@ -1,11 +1,12 @@
 // initialize the library array
 let library = [];
 // create a constructor function to add new books, include title, author, # of pages, and if you've read it, and unique id
-function Book(title, author, pages, read) {
+function Book(title, author, pages, read, image) {
     this.title = title;
     this.author = author;
     this.pages = pages;
     this.read = read;
+    this.image = image;
     // create a function that generates a unique ID for each book and adds it to the book object on creation, can be created with crypto.randomUUID()
     this.id = crypto.randomUUID();
 }
