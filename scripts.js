@@ -1,5 +1,5 @@
 // initialize the library array
-let library = [];
+
 
 const bookContainer = document.querySelector('.bookContainer')
 // create a constructor function to add new books, include title, author, # of pages, and if you've read it, and unique id
@@ -16,6 +16,12 @@ function Book(title, author, pages, read, image) {
 
 let test = new Book('test1','test',23,'yes','https://gratisography.com/wp-content/uploads/2025/03/gratisography-cruising-cat-800x525.jpg');
 let test1 = new Book('test2','test',24,'no',);
+let test2 = new Book('test3','test',24,'no',);
+let test3 = new Book('test4','test',24,'no',);
+let test4 = new Book('test5','test',24,'no',);
+let test5 = new Book('test6','test',24,'no',);
+
+let library = [];
 
 // take the created book objects and push them into a Library array
 function addBookToLibrary(bookObj) {
@@ -53,6 +59,10 @@ function addBookCardToPage(book) {
     bookCard.appendChild(bookRead);
     bookCard.appendChild(buttonContainer);
     bookContainer.appendChild(bookCard);
+    deleteButton.addEventListener('click', function (e) {
+        library.splice(library.indexOf(this.title), 1);
+        bookCard.remove(this);
+    })
 }
 // have a button that will bring up a form and allow a user to add a new book to the library array
 function addBookForm() {
@@ -61,6 +71,12 @@ function addBookForm() {
    modal.classList.remove('modalClose');
    content.classList.add('modalOpen');
 }
+
+function closeBookForm() {
+    const modal = document.querySelector('#formContainer');
+    const content = document.querySelector('#container');
+    modal.classList.add('modalClose');
+    content.classList.remove('modalOpen');
+}
 // have another button on the book cards that removes the book from the library array
 // and one more button to change the read property on the book
-
