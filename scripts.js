@@ -14,8 +14,8 @@ function Book(title, author, pages, read, image) {
 }
 
 
-let test = new Book('test','test',23,'yes','https://gratisography.com/wp-content/uploads/2025/03/gratisography-cruising-cat-800x525.jpg');
-let test1 = new Book('test','test',24,'yes',);
+let test = new Book('test1','test',23,'yes','https://gratisography.com/wp-content/uploads/2025/03/gratisography-cruising-cat-800x525.jpg');
+let test1 = new Book('test2','test',24,'yes',);
 
 // take the created book objects and push them into a Library array
 function addBookToLibrary(bookObj) {
@@ -28,6 +28,27 @@ function addBookCardToPage(book) {
     const bookImage = document.createElement('img');
     bookImage.src = ((book.image === undefined) ? './images/libraryImage.jpg' : book.image );
     bookCard.appendChild(bookImage);
+    const bookTitle = document.createElement('h3');
+    bookTitle.textContent = book.title;
+    const bookAuthor = document.createElement('p');
+    bookAuthor.textContent = book.author;
+    const bookPages = document.createElement('p');
+    bookPages.textContent = book.pages;
+    const bookRead = document.createElement('p');
+    bookRead.textContent = book.read;
+    const buttonContainer = document.createElement('div');
+    buttonContainer.id = 'cardButtonContainer';
+    const readButton = document.createElement('button');
+    const deleteButton = document.createElement('button');
+    readButton.textContent = 'Finished it!';
+    deleteButton.textContent = 'Delete';
+    buttonContainer.appendChild(readButton);
+    buttonContainer.appendChild(deleteButton);
+    bookCard.appendChild(bookTitle);
+    bookCard.appendChild(bookAuthor);
+    bookCard.appendChild(bookPages);
+    bookCard.appendChild(bookRead);
+    bookCard.appendChild(buttonContainer);
     bookContainer.appendChild(bookCard);
 }
 // have a button that will bring up a form and allow a user to add a new book to the library array
