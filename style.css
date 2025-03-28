@@ -1,7 +1,3 @@
-body {
-    display: flex;
-    justify-content: center;
-}
 
 #container {
     display: grid;
@@ -173,6 +169,7 @@ footer li {
 
 #formContainer {
     position: fixed;
+    right: 25%;
     margin-top: 100px;
     z-index: 1;
     height: 50vh;
@@ -192,7 +189,6 @@ footer li {
 
 #formTitle {
     text-align: center;
-    
     font-family: "Boldonse", sans-serif;
 }
 
