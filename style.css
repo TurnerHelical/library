@@ -1,3 +1,8 @@
+body {
+    display: flex;
+    justify-content: center;
+}
+
 #container {
     display: grid;
     grid-template: 245px 1fr 300px / 1fr;
@@ -115,17 +120,29 @@ main p {
 #cardButtonContainer{
     display: flex;
     margin-top: 5px;
-    justify-content: space-around;
+    justify-content: space-evenly;
 }
 
 #finishedButton{
     background-color: rgba(83 , 195 , 189, 0.5 );
     border-radius: 4px;
+    padding: 0px;
+    width: 100px;
+}
+
+#finishedButton:hover {
+    background-color: #F9EAE5;
 }
 
 #deleteButton{
     background-color: #FF7E7A;
     border-radius: 4px;
+    padding: 0px;
+    width: 100px;
+}
+
+#deleteButton:hover{
+    background-color: #F9EAE5;
 }
 
 footer {
@@ -152,4 +169,20 @@ footer ul {
 footer li {
     height: 50px;
     width: 50px;
+}
+
+#formContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    z-index: 1;
+    height: 50vh;
+    width: 50vw;
+    background-color: #FFFFFF;
+}
+
+#formContainer form {
+    display: flex;
+    flex-direction: column;
 }

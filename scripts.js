@@ -15,7 +15,7 @@ function Book(title, author, pages, read, image) {
 
 
 let test = new Book('test1','test',23,'yes','https://gratisography.com/wp-content/uploads/2025/03/gratisography-cruising-cat-800x525.jpg');
-let test1 = new Book('test2','test',24,'yes',);
+let test1 = new Book('test2','test',24,'no',);
 
 // take the created book objects and push them into a Library array
 function addBookToLibrary(bookObj) {
@@ -31,11 +31,11 @@ function addBookCardToPage(book) {
     const bookTitle = document.createElement('h3');
     bookTitle.textContent = book.title;
     const bookAuthor = document.createElement('p');
-    bookAuthor.textContent = book.author;
+    bookAuthor.textContent = 'By: ' + book.author;
     const bookPages = document.createElement('p');
-    bookPages.textContent = book.pages;
+    bookPages.textContent = 'Pages: ' + book.pages;
     const bookRead = document.createElement('p');
-    bookRead.textContent = book.read;
+    bookRead.textContent = 'Finished Reading: '+ book.read;
     const buttonContainer = document.createElement('div');
     buttonContainer.id = 'cardButtonContainer';
     const readButton = document.createElement('button');
@@ -44,7 +44,8 @@ function addBookCardToPage(book) {
     deleteButton.id = 'deleteButton';
     readButton.textContent = 'Finished it!';
     deleteButton.textContent = 'Delete';
-    buttonContainer.appendChild(readButton);
+    if (book.read === 'no')
+        buttonContainer.appendChild(readButton);
     buttonContainer.appendChild(deleteButton);
     bookCard.appendChild(bookTitle);
     bookCard.appendChild(bookAuthor);
@@ -54,6 +55,11 @@ function addBookCardToPage(book) {
     bookContainer.appendChild(bookCard);
 }
 // have a button that will bring up a form and allow a user to add a new book to the library array
+function addBookForm() {
+    const addForm = document.createElement('div');
+    addForm.id = 'formModal';
+    
+}
 // have another button on the book cards that removes the book from the library array
 // and one more button to change the read property on the book
 
