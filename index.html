@@ -11,22 +11,42 @@
     <link href="https://fonts.googleapis.com/css2?family=Boldonse&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div id="formContainer">
+    <div id="formContainer" class="modalClose">
         <form action="">
-            <label for="title">Title: </label>
+            <h2 id="formTitle">Add Book Here!</h2>
+
+            <label for="title" class="textlabel">Title: </label>
             <input type="text" name="title" id="title">
 
-            <label for="author">Author: </label>
+            <label for="author" class="textlabel">Author: </label>
             <input type="text" name="author" id="author">
 
-            <label for="pages">Number of pages: </label>
+            <label for="pages" class="textlabel">Number of pages: </label>
             <input type="number" name="pages" id="pages">
 
-            <label for="image">Image path: </label>
+            <label for="image" class="textlabel">Image URL: </label>
             <input type="url" name="image" id="image">
+            <div id="readStatus">
+
+                <p>Have you read this book?</p>
+
+                <input type="radio" id="read" name="readStatus" value="yes">
+                <label for="read">Yes</label>
+
+                <input type="radio" id="notRead" name="readStatus" value="no">
+                <label for="notRead">No</label>
+
+            </div>
+
+            <div id="formButtonContainer">
+
+                <button id="formSubmit">Submit</button>
+                <button id="formCancel">Cancel</button>
+
+            </div>
         </form>
     </div>
-    <div id="container">
+    <div id="container" class="modalOpen">
         <header>
             <div id="headerFlex">
             <h1>Library App</h1>
