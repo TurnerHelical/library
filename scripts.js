@@ -56,9 +56,10 @@ function addBookCardToPage(book) {
 }
 // have a button that will bring up a form and allow a user to add a new book to the library array
 function addBookForm() {
-    const addForm = document.createElement('div');
-    addForm.id = 'formModal';
-    
+   const modal = document.querySelector('#formContainer');
+   const content = document.querySelector('#container');
+   modal.classList.remove('modalClose');
+   content.classList.add('modalOpen');
 }
 // have another button on the book cards that removes the book from the library array
 // and one more button to change the read property on the book
