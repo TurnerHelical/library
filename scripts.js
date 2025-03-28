@@ -39,7 +39,9 @@ function addBookCardToPage(book) {
     const buttonContainer = document.createElement('div');
     buttonContainer.id = 'cardButtonContainer';
     const readButton = document.createElement('button');
+    readButton.id = 'finishedButton';
     const deleteButton = document.createElement('button');
+    deleteButton.id = 'deleteButton';
     readButton.textContent = 'Finished it!';
     deleteButton.textContent = 'Delete';
     buttonContainer.appendChild(readButton);

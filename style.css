@@ -64,6 +64,18 @@ main p {
     margin: 20px 0px;
 }
 
+#addBook {
+    padding: 5px 30px;
+    font-size: 20px;
+    border-radius: 5px;
+    background-color: aqua;
+    font-family: "Boldonse", sans-serif;
+}
+
+#addBook:hover  {
+    background-color: #FFFFFF;
+}
+
 .bookContainer {
     padding: 25px;
     width: 1000px;
@@ -106,8 +118,13 @@ main p {
     justify-content: space-around;
 }
 
-#cardButtonContainer button{
+#finishedButton{
     background-color: rgba(83 , 195 , 189, 0.5 );
+    border-radius: 4px;
+}
+
+#deleteButton{
+    background-color: #FF7E7A;
     border-radius: 4px;
 }
 
