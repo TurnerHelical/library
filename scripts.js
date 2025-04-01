@@ -1,4 +1,4 @@
-// initialize the library array
+
 
 const container = document.querySelector('#container');
 const bookContainer = document.querySelector('.bookContainer');
@@ -18,15 +18,7 @@ function Book(title, author, pages, read, image) {
     this.id = crypto.randomUUID();
 }
 
-
-
-let test = new Book('test1', 'test', 23, 'yes', 'https://gratisography.com/wp-content/uploads/2025/03/gratisography-cruising-cat-800x525.jpg');
-let test1 = new Book('test2', 'test', 24, 'no',);
-let test2 = new Book('test3', 'test', 24, 'no',);
-let test3 = new Book('test4', 'test', 24, 'no',);
-let test4 = new Book('test5', 'test', 24, 'no',);
-let test5 = new Book('test6', 'test', 24, 'no',);
-
+// initialize the library array
 let library = [];
 
 // take the created book objects and push them into a Library array
@@ -38,7 +30,9 @@ function addBookCardToPage(book) {
     const bookCard = document.createElement('div');
     bookCard.classList.add('card');
     const bookImage = document.createElement('img');
+    
     bookImage.src = ((book.image === undefined || book.image === '') ? './images/libraryImage.jpg' : book.image);
+    bookImage.setAttribute('onerror', "this.src='./images/libraryImage.jpg'");
     bookCard.appendChild(bookImage);
     const bookTitle = document.createElement('h3');
     bookTitle.textContent = book.title;
@@ -91,24 +85,37 @@ function clearForm() {
     notRead.value = '';
 }
 
-// function validateBook(newBook) {
-//     if (newBook.image === undefined || newBook.image === '') {
-//         newBook.image = './images/libraryImage.jpg'
-//     }
-//     // if (library.length >= 1) {
-//     //     console.log(library)
-//     //     for (let book of library) {
-//     //         if (newBook.title === book.title && newBook.author === book.author) {
-//     //             closeBookForm();
-//     //             return
+function duplicateBook(newBook) {
+    if (library.length >= 1) {
+        for (let book of library) {
+            if (newBook.title === book.title && newBook.author === book.author) {
+                closeBookForm();
+                alert('Book is already in Library');
+                return 'fail';   
+            } 
+        }
 
-//     //         }
-//     //     }
+    }
+    return newBook;
+}
 
-//     // }
-//     console.log(newBook)
-//     return newBook;
-// }
+function validateBook(book) {
+    const titlePattern = /^[A-Za-z0-9\s\-:,.!?'";()&]{1,50}$/;
+    const authorPattern = /^[A-Za-z\s\-'.]{2,50}$/;
+
+    if (!titlePattern.test(book.title)) {
+        closeBookForm();
+        alert('Book Title contains invalid characters or is too long');
+        return 'fail';  
+
+    } else if (!authorPattern.test(book.author)) {
+        closeBookForm();
+        alert('Author name contains invalid characters or is too long');
+        return 'fail';
+
+    } 
+}
+
 
 // have a button that will bring up a form and allow a user to add a new book to the library array
 function addBookForm() {
@@ -140,16 +147,16 @@ function theOne(finished) {
         
     }
     clearForm();
-    
     let newBook = new Book(bookTitle, authorName, pagesNumber, finished, imageURL);
+    if (duplicateBook(newBook) === 'fail') {
+        return
+    } else if (validateBook(newBook) === 'fail') {
+        return
+    }
     addBookCardToPage(newBook);
     addBookToLibrary(newBook);
-
-
-
-
-
 }
+
 const haveRead = document.querySelector('#read');
 const notRead = document.querySelector('#notRead');
 haveRead.addEventListener('change', function (e) {
@@ -158,12 +165,16 @@ haveRead.addEventListener('change', function (e) {
 notRead.addEventListener('change', function (e) {
     return finished = 'no';
 })
+
 const formSubmit = document.querySelector('#formSubmit');
 formSubmit.addEventListener('click', function (e) {
     theOne(finished);
     closeBookForm();
-})
+});
+
 const cancelButton = document.querySelector('#formCancel');
 cancelButton.addEventListener('click', function (e) {
     closeBookForm();
 });
+
+
