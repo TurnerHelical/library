@@ -52,6 +52,11 @@ function addBookCardToPage(book) {
     deleteButton.textContent = 'Delete';
     if (book.read === 'no')
         buttonContainer.appendChild(readButton);
+        readButton.addEventListener('click', function (e) {
+            book.read = 'yes';
+            bookRead.textContent = 'Finished Reading: '+ book.read;
+            readButton.remove(this);
+        })
     buttonContainer.appendChild(deleteButton);
     bookCard.appendChild(bookTitle);
     bookCard.appendChild(bookAuthor);
