@@ -181,7 +181,7 @@ footer li {
     min-height: 530px;
 }
 
-#formContainer form {
+#form {
     display: grid;
     grid-template: 80px repeat(8, 30px) / 1fr;
     align-items: center;
