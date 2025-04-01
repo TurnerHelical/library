@@ -1,7 +1,12 @@
 // initialize the library array
 
+const container = document.querySelector('#container');
+const bookContainer = document.querySelector('.bookContainer');
+const addBook = document.querySelector('#addBook');
 
-const bookContainer = document.querySelector('.bookContainer')
+addBook.addEventListener('click', function(e) {
+    addBookForm();
+});
 // create a constructor function to add new books, include title, author, # of pages, and if you've read it, and unique id
 function Book(title, author, pages, read, image) {
     this.title = title;
@@ -12,6 +17,7 @@ function Book(title, author, pages, read, image) {
     // create a function that generates a unique ID for each book and adds it to the book object on creation, can be created with crypto.randomUUID()
     this.id = crypto.randomUUID();
 }
+
 
 
 let test = new Book('test1','test',23,'yes','https://gratisography.com/wp-content/uploads/2025/03/gratisography-cruising-cat-800x525.jpg');
@@ -75,6 +81,14 @@ function addBookForm() {
    const content = document.querySelector('#container');
    modal.classList.remove('modalClose');
    content.classList.add('modalOpen');
+   const submitButton = document.querySelector('#formSubmit');
+   submitButton.addEventListener('click', function (e) {
+        theOne();
+   })
+   const cancelButton = document.querySelector('#formCancel');
+   cancelButton.addEventListener('click', function(e) {
+        closeBookForm();
+        });
 }
 
 function closeBookForm() {
@@ -84,4 +98,3 @@ function closeBookForm() {
     content.classList.remove('modalOpen');
 }
 // have another button on the book cards that removes the book from the library array
-// and one more button to change the read property on the book
