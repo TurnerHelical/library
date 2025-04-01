@@ -38,7 +38,7 @@ function addBookCardToPage(book) {
     const bookCard = document.createElement('div');
     bookCard.classList.add('card');
     const bookImage = document.createElement('img');
-    bookImage.src = ((book.image === undefined) ? './images/libraryImage.jpg' : book.image);
+    bookImage.src = ((book.image === undefined || book.image === '') ? './images/libraryImage.jpg' : book.image);
     bookCard.appendChild(bookImage);
     const bookTitle = document.createElement('h3');
     bookTitle.textContent = book.title;
@@ -75,31 +75,47 @@ function addBookCardToPage(book) {
         bookCard.remove(this);
     })
 }
+
+function clearForm() {
+    const titleField = document.querySelector('#title');
+    const authorField = document.querySelector('#author');
+    const pagesField = document.querySelector('#pages');
+    const imageField = document.querySelector('#image');
+    const haveRead = document.querySelector('#read');
+    const notRead = document.querySelector('#notRead');
+    titleField.value = '';
+    authorField.value = '';
+    pagesField.value = '';
+    imageField.value = '';
+    haveRead.value = '';
+    notRead.value = '';
+}
+
+// function validateBook(newBook) {
+//     if (newBook.image === undefined || newBook.image === '') {
+//         newBook.image = './images/libraryImage.jpg'
+//     }
+//     // if (library.length >= 1) {
+//     //     console.log(library)
+//     //     for (let book of library) {
+//     //         if (newBook.title === book.title && newBook.author === book.author) {
+//     //             closeBookForm();
+//     //             return
+
+//     //         }
+//     //     }
+
+//     // }
+//     console.log(newBook)
+//     return newBook;
+// }
+
 // have a button that will bring up a form and allow a user to add a new book to the library array
 function addBookForm() {
     const modal = document.querySelector('#formContainer');
     const content = document.querySelector('#container');
     modal.classList.remove('modalClose');
     content.classList.add('modalOpen');
-    const haveRead = document.querySelector('#read');
-    const notRead = document.querySelector('#notRead');
-    haveRead.addEventListener('change', function (e) {
-        return finished = 'yes';
-    })
-    notRead.addEventListener('change', function (e) {
-        return finished = 'no';
-    })
-    const submitButton = document.querySelector('#formSubmit');
-    submitButton.addEventListener('click', function (e) {
-        theOne(finished);
-        
-    })
-    const cancelButton = document.querySelector('#formCancel');
-    cancelButton.addEventListener('click', function (e) {
-        closeBookForm();
-    });
-
-
 }
 
 function closeBookForm() {
@@ -118,11 +134,36 @@ function theOne(finished) {
     let bookTitle = titleField.value;
     let authorName = authorField.value;
     let pagesNumber = pagesField.value;
-    let imageURL = imageField.value; 
-
-    let newBook = new Book(bookTitle, authorName, pagesNumber,finished, imageURL);
-    closeBookForm();
-    addBookToLibrary(newBook);
-    addBookCardToPage(newBook);
+    let imageURL = imageField.value
+    if (imageField.value === '') {
+        imageURL = './images/libraryImage.jpg'
+        
+    }
+    clearForm();
     
+    let newBook = new Book(bookTitle, authorName, pagesNumber, finished, imageURL);
+    addBookCardToPage(newBook);
+    addBookToLibrary(newBook);
+
+
+
+
+
 }
+const haveRead = document.querySelector('#read');
+const notRead = document.querySelector('#notRead');
+haveRead.addEventListener('change', function (e) {
+    return finished = 'yes';
+})
+notRead.addEventListener('change', function (e) {
+    return finished = 'no';
+})
+const formSubmit = document.querySelector('#formSubmit');
+formSubmit.addEventListener('click', function (e) {
+    theOne(finished);
+    closeBookForm();
+})
+const cancelButton = document.querySelector('#formCancel');
+cancelButton.addEventListener('click', function (e) {
+    closeBookForm();
+});
